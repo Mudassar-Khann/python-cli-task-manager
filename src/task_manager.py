@@ -1,51 +1,40 @@
 from task import Task
 class TaskManager:
 
-    def __init__(self):
-        self.storage = {}
+
+    storage = {}
 
 
     def add_task(self,task, priority):
             task = Task(task,priority)
-            no = len(self.storage) + 1
+            no = len(TaskManager.storage) + 1
 
-            self.storage[no] = [task.title,task.priority,task.completed]
+            TaskManager.storage[no] = [task.title,task.priority,task.completed]
 
 
 
     def view_task(self):
-        if len(self.storage) == 0:
-             print("Task list is empty")
-        else:
-            for key , value in self.storage.items():
+         for key , value in TaskManager.storage.items():
                 print(f"{key}. {value[0]} [{value[1]}] {'✔' if value[2] else '❌'}")
 
     def complete_task(self):
-         if len(self.storage) == 0:
-             print("Task list is empty so there is nothing to complete")
-         else:
-            no = int(input("Enter Task no to complete: "))
-            if  no > len(self.storage) or no < 0:
-                print("Invalid no")
-            else:
-                self.storage[no][2] = True
-                print("Task marked as completed.")
+        no = int(input("Enter Task no to complete: "))
+        if  no > len(self.storage) or no < 0:
+            print("Invalid no")
+        else:
+            self.storage[no][2] = True
+            print("Task marked as completed.")
 
 
 
     def delete_task(self):
-        if len(self.storage) == 0:
-             print("Task list is empty so there is nothing to delete")
+
+        task_no = int(input("Enter task no to delete: "))
+
+        if  task_no > len(self.storage) or task_no < 0:
+             print("This Task no dosn't exist ")
         else:
-             task_no = int(input("Enter task no to delete: "))
-
-             if  task_no > len(self.storage) or task_no < 0:
-
-                print("This Task no dosn't exist ")
-
-             else:
-
-                self.storage.pop(task_no,)
+             self.storage.pop(task_no,)
 
 
 def main():
