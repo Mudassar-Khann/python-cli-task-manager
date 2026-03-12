@@ -1,60 +1,60 @@
 from task import Task
+
 class TaskManager:
+    """
+    Handles all operations on tasks.
+    """
 
+    def __init__(self):
+        self.tasks = {}
 
-    storage = {}
+    def add_task(self, title, priority):
+        """
+        Creates a new task and stores it.
+        """
+        task = Task(title, priority)
 
+        task_id = len(self.tasks) + 1
 
-    def add_task(self,task, priority):
-            task = Task(task,priority)
-            no = len(TaskManager.storage) + 1
+        self.tasks[task_id] = task
 
-            TaskManager.storage[no] = [task.title,task.priority,task.completed]
+        print("Task added successfully.")
 
+    def view_tasks(self):
+        """
+        Prints all tasks.
+        """
+        if not self.tasks:
+            print("Task list is empty.")
+            return
 
+        for task_id, task in self.tasks.items():
+            status = "✔" if task.completed else "❌"
 
-    def view_task(self):
-         for key , value in TaskManager.storage.items():
-                print(f"{key}. {value[0]} [{value[1]}] {'✔' if value[2] else '❌'}")
+            print(f"{task_id}. {task.title} [{task.priority}] {status}")
 
-    def complete_task(self):
-        no = int(input("Enter Task no to complete: "))
-        if  no > len(self.storage) or no < 0:
-            print("Invalid no")
-        else:
-            self.storage[no][2] = True
-            print("Task marked as completed.")
+    def complete_task(self, task_id):
+        """
+        Marks a task as completed.
+        """
 
+        if task_id not in self.tasks:
+            print("Invalid task number.")
+            return
 
+        self.tasks[task_id].mark_complete()
 
-    def delete_task(self):
+        print("Task marked as completed.")
 
-        task_no = int(input("Enter task no to delete: "))
+    def delete_task(self, task_id):
+        """
+        Deletes a task.
+        """
 
-        if  task_no > len(self.storage) or task_no < 0:
-             print("This Task no dosn't exist ")
-        else:
-             self.storage.pop(task_no,)
+        if task_id not in self.tasks:
+            print("Task does not exist.")
+            return
 
+        self.tasks.pop(task_id)
 
-def main():
-    t = TaskManager()
-    # print(t.storage)
-
-
-
-    t.add_task("do python", "high")
-    t.add_task("do cpp", "low")
-    t.add_task("do java", "low")
-    t.view_task()
-
-    # t.complete_task()
-    t.delete_task()
-
-    t.view_task()
-
-if __name__ == "__main__":
-     main()
-
-
-
+        print("Task deleted successfully.")
