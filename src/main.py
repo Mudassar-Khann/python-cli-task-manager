@@ -16,6 +16,8 @@ while True:
 
     user_choice = int(input("Select Option: "))
 
+    if user_choice not in {1,2,3,4,5}:
+        raise ValueError("must choose between 1 to 5")
 
     if user_choice == 5:
         print("Closing program.....")
@@ -28,13 +30,22 @@ while True:
         t.add_task(task=pick_title,priority=pick_priority)
 
     elif user_choice == 2:
-        t.view_task()
+         if len(TaskManager.storage) == 0:
+             print("Task list is empty")
+         else:
+            t.view_task()
 
     elif user_choice == 3:
-        t.complete_task()
+        if len(TaskManager.storage) == 0:
+            print("Task list is empty so there is nothing to complete")
+        else:
+            t.complete_task()
 
     elif user_choice == 4:
-        t.delete_task()
+        if len(TaskManager.storage) == 0:
+            print("Task list is empty so there is nothing to delete")
+        else:
+            t.delete_task()
 
 
 
