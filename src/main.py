@@ -1,23 +1,26 @@
-from task import Task
 from task_manager import TaskManager
 
 
+
+def show_menu():
+    """
+    Displays menu options.
+    """
+
+    print("\n=== Python CLI Task Manager ===\n")
+
+    print("1. Add Task")
+    print("2. View Tasks")
+    print("3. Complete Task")
+    print("4. Delete Task")
+    print("5. Exit")
 while True:
-    print("=== python cli Task Manager ===", end="\n\n")
 
-    print("""
-1. Add Task
-2. View Tasks
-3. Complete Task
-4. Delete Task
-5. Exit
-
-                """)
-
+    show_menu()
     user_choice = int(input("Select Option: "))
 
     if user_choice not in {1,2,3,4,5}:
-        raise ValueError("must choose between 1 to 5")
+        raise ValueError("must choose between 1")
 
     if user_choice == 5:
         print("Closing program.....")
