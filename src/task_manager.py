@@ -59,18 +59,23 @@ class TaskManager:
 
         print("Task deleted successfully.")
 
-    def edit_task(self, task_id, new_title=None, new_priority=None):
+    def edit_task(self, task_id):
 
         if task_id not in self.tasks:
             print("Task does not exist.")
             return
-        if new_title and new_priority:
-            task = (new_title, new_priority)
-            self.tasks[task_id] = task
+        new_title = input("New title (leave blank to keep current): ")
+        new_priority = input("New priority (High/Medium/Low, leave blank to keep current): ")
 
-            print("Task updated succesfully")
+        if not (new_title and new_priority):
+            print("task was not modified")
             return
-        print("task was not modified")
+
+        task = Task(new_title, new_priority)
+        self.tasks[task_id] = task
+
+        print("Task updated succesfully")
+
 
 
 

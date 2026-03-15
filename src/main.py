@@ -42,6 +42,7 @@ def main():
 
             manager.view_tasks()
 
+
         elif choice == 3:
 
             try:
@@ -64,11 +65,10 @@ def main():
 
             except ValueError:
                 print("plz enter valid number ")
+                continue
 
-            new_title = input("New title (leave blank to keep current): ")
-            new_priority = input("New priority (High/Medium/Low, leave blank to keep current): ")
 
-            manager.edit_task(task_id,new_priority,new_priority)
+            manager.edit_task(task_id)
 
         elif choice == 6:
 
