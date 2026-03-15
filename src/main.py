@@ -12,7 +12,8 @@ def show_menu():
     print("2. View Tasks")
     print("3. Complete Task")
     print("4. Delete Task")
-    print("5. Exit")
+    print("5. Edit Task")
+    print("6. Exit")
 
 
 def main():
@@ -58,6 +59,18 @@ def main():
                 print("Please enter a valid number.")
 
         elif choice == 5:
+            try:
+              task_id = int(input("Enter task number to edit: "))
+
+            except ValueError:
+                print("plz enter valid number ")
+
+            new_title = input("New title (leave blank to keep current): ")
+            new_priority = input("New priority (High/Medium/Low, leave blank to keep current): ")
+
+            manager.edit_task(task_id,new_priority,new_priority)
+
+        elif choice == 6:
 
             print("Closing program...")
             print("Goodbye!")

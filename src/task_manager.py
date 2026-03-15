@@ -58,3 +58,20 @@ class TaskManager:
         self.tasks.pop(task_id)
 
         print("Task deleted successfully.")
+
+    def edit_task(self, task_id, new_title=None, new_priority=None):
+
+        if task_id not in self.tasks:
+            print("Task does not exist.")
+            return
+        if new_title and new_priority:
+            task = (new_title, new_priority)
+            self.tasks[task_id] = task
+
+            print("Task updated succesfully")
+            return
+        print("task was not modified")
+
+
+
+
