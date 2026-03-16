@@ -1,4 +1,5 @@
 from task_manager import TaskManager
+import json
 
 
 def show_menu():
@@ -74,6 +75,8 @@ def main():
 
             print("Closing program...")
             print("Goodbye!")
+            with open("tasks.json", "a", encoding="utf-8") as f:
+                json.dump(manager.tasks, f, indent=4, )
             break
 
         else:
