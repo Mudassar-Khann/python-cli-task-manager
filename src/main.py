@@ -21,6 +21,9 @@ def main():
 
 
     manager = TaskManager()
+    with open("tasks.json", "r", encoding="uft-8") as f:
+        data = json.load(f)
+    manager.tasks = data
 
     while True:
 
