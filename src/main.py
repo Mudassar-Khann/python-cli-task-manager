@@ -21,7 +21,7 @@ def main():
 
 
     manager = TaskManager()
-    with open("tasks.json", "r", encoding="uft-8") as f:
+    with open("src/tasks.json", "r", encoding="uft-8") as f:
         data = json.load(f)
     manager.tasks = data
 
@@ -78,7 +78,7 @@ def main():
 
             print("Closing program...")
             print("Goodbye!")
-            with open("tasks.json", "a", encoding="utf-8") as f:
+            with open("src/tasks.json", "a", encoding="utf-8") as f:
                 json.dump(manager.tasks, f, indent=4, )
             break
 
@@ -88,3 +88,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
