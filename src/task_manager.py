@@ -18,6 +18,14 @@ class TaskManager:
         for task_id, task_data in data.items():
             self.tasks[int(task_id)] = Task.from_dict(task_data)
 
+
+    def generate_id(self):
+        """
+
+        Always generate next max ID
+        """
+        return max(self.tasks.keys(), default=0) + 1
+
     def add_task(self, title, priority):
         """
         Creates a new task and stores it.
