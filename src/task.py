@@ -12,4 +12,16 @@ class Task:
 
         self.completed = True
 
+
+    def to_dict(self):
+        """
+        NEW: convert object to dictionary for JSON
+        """
+        return {
+            "title": self.title,
+            "priority": self.priority,
+            "completed": self.completed
+        }
+
    
+
