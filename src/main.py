@@ -1,12 +1,7 @@
 from task_manager import TaskManager
-import json
 
 
 def show_menu():
-    """
-    Displays menu options.
-    """
-
     print("\n=== Python CLI Task Manager ===\n")
 
     print("1. Add Task")
@@ -19,10 +14,7 @@ def show_menu():
 
 def main():
 
-
     manager = TaskManager()
-
-
 
     while True:
 
@@ -45,14 +37,13 @@ def main():
 
             manager.view_tasks()
 
-
         elif choice == 3:
 
             try:
                 task_id = int(input("Enter task number to complete: "))
                 manager.complete_task(task_id)
             except ValueError:
-                print("Please enter a valid number.")
+                print("Invalid number.")
 
         elif choice == 4:
 
@@ -60,46 +51,22 @@ def main():
                 task_id = int(input("Enter task number to delete: "))
                 manager.delete_task(task_id)
             except ValueError:
-                print("Please enter a valid number.")
+                print("Invalid number.")
 
         elif choice == 5:
+
             try:
-              task_id = int(input("Enter task number to edit: "))
-
+                task_id = int(input("Enter task number to edit: "))
+                manager.edit_task(task_id)
             except ValueError:
-                print("plz enter valid number ")
-                continue
-
-
-            manager.edit_task(task_id)
+                print("Invalid number.")
 
         elif choice == 6:
 
-            print("Closing program...")
+            print("Saving and exiting...")
+            manager.save_tasks()  # ✅ moved here properly
             print("Goodbye!")
-            if manager.tasks:
-                tasks = {}
-                for index, task in manager.tasks.items():
-                    tasks[index] = [task.title,task.priority,task.completed]
-                
-
-            with open("src/tasks.json", "w", encoding="utf-8") as f:
-                json.dump(tasks, f, indent=4, )
             break
 
         else:
-            print("Invalid option. Choose between 1–5.")
-
-
-if __name__ == "__main__":
-    main()
-
-
-
-
-
-
-
-
-
-
+            print("Invalid option.")
