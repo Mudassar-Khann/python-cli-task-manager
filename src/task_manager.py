@@ -117,6 +117,16 @@ class TaskManager:
 
         print("Task updated successfully.")
 
+    def save_tasks(self):
+
+        data = {}
+
+        for task_id, task in self.tasks.items():
+            data[task_id] = task.to_dict()
+
+        with open("src/tasks.json", "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=4)
+
 
 
 
