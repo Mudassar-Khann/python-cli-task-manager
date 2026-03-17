@@ -12,7 +12,7 @@ class TaskManager:
         try:
             with open("src/tasks.json", "r", encoding="utf-8") as f:
                 data = json.load(f)
-        except json.JSONDecodeError:
+        except (json.JSONDecodeError, FileNotFoundError):
             data = {}
 
         if data:
