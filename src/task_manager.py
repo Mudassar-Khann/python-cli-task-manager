@@ -15,11 +15,8 @@ class TaskManager:
         except (json.JSONDecodeError, FileNotFoundError):
             data = {}
 
-        if data:
-            for task_id, task in data.items():
-                t = Task(task[0], task[1], task[2])
-                self.tasks[task_id] = t
-
+        for task_id, task_data in data.items():
+            self.tasks[int(task_id)] = Task.from_dict(task_data)
 
     def add_task(self, title, priority):
         """
