@@ -26,6 +26,24 @@ class TaskManager:
         """
         return max(self.tasks.keys(), default=0) + 1
 
+
+    def add_task(self, title, priority):
+        """
+        Add new task
+        """
+        if priority not in {"High", "Medium", "Low"}:
+            print("Invalid priority. Use High/Medium/Low.")
+            return
+
+        task = Task(title, priority)
+
+        task_id = self.generate_id()
+
+        self.tasks[task_id] = task
+
+        print("Task added successfully.")
+
+
     def add_task(self, title, priority):
         """
         Creates a new task and stores it.
