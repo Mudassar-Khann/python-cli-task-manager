@@ -100,17 +100,22 @@ class TaskManager:
         if task_id not in self.tasks:
             print("Task does not exist.")
             return
+
+        task = self.tasks[task_id]
+
         new_title = input("New title (leave blank to keep current): ")
         new_priority = input("New priority (High/Medium/Low, leave blank to keep current): ")
 
-        if not (new_title and new_priority):
-            print("task was not modified")
-            return
+        if new_title:
+            task.title = new_title
 
-        task = Task(new_title, new_priority)
-        self.tasks[task_id] = task
+        if new_priority:
+            if new_priority in {"High", "Medium", "Low"}:
+                task.priority = new_priority
+            else:
+                print("Invalid priority. Keeping old value.")
 
-        print("Task updated succesfully")
+        print("Task updated successfully.")
 
 
 
