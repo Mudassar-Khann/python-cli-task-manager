@@ -23,5 +23,9 @@ class Task:
             "completed": self.completed
         }
 
-   
+
+    @staticmethod
+    def from_dict(data):
+      
+        return Task(data["title"], data["priority"], data["completed"])
 
