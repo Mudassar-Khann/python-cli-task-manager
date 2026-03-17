@@ -1,4 +1,5 @@
 from task import Task
+import json
 
 class TaskManager:
     """
@@ -7,6 +8,18 @@ class TaskManager:
 
     def __init__(self):
         self.tasks = {}
+
+        try:
+            with open("src/tasks.json", "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except json.JSONDecodeError:
+            data = {}
+
+        if data:
+            for task_id, task in data.items():
+                t = Task(task[0], task[1], task[2])
+                self.tasks[task_id] = t
+
 
     def add_task(self, title, priority):
         """
